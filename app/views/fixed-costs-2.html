@@ -1,0 +1,88 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How much were your legal representative’s costs – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Alpha"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link govuk-link--no-visited-state" href="#">give your feedback by email</a>.'
+}) }}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "#"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="./fixed-costs-1" method="post">
+
+        <h1 class="govuk-heading-l">
+          <span class="govuk-caption-l">Enforce the order</span>
+          Legal representative’s costs
+        </h1>
+
+        <p class="govuk-body-l">Case number: 1234-5678-9101-1121</p>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        {% set yesHtml %}
+          {{ govukInput({
+            id: "contact-by-text",
+            name: "contactByText",
+            type: "tel",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "How much were your legal representative’s costs"
+            },
+            prefix: {
+              text: "£"
+            }
+          }) }}
+          {% endset -%}
+
+          {{ govukRadios({
+            name: "whereDoYouLive",
+            fieldset: {
+              legend: {
+                text: "Do you want to recover legal representative’s costs?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "(Something like) these are costs for a lawyer to help with your case."
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                conditional: {
+                  html: yesHtml
+                }
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
