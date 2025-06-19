@@ -7,14 +7,14 @@
 {% block beforeContent %}
 {{ govukPhaseBanner({
   tag: {
-    text: "Alpha"
+    text: "Beta"
   },
-  html: 'This is a new service. Help us improve it and <a class="govuk-link govuk-link--no-visited-state" href="#">give your feedback by email</a>.'
+  html: 'This is a new service. Help us improve it and <a class="govuk-link govuk-link--no-visited-state" href="#">give your feedback (opens in new tab)</a>.'
 }) }}
 
 {{ govukBackLink({
   text: "Back",
-  href: "#"
+  href: "./fixed-costs-1"
 }) }}
 {% endblock %}
 
@@ -24,15 +24,6 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form class="form" action="./fixed-costs-1" method="post">
-
-        <h1 class="govuk-heading-l">
-          <span class="govuk-caption-l">Enforce the order</span>
-          Legal representative’s costs
-        </h1>
-
-        <p class="govuk-body-l">Case number: 1234-5678-9101-1121</p>
-
-        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
         {% set yesHtml %}
           {{ govukInput({
@@ -54,12 +45,12 @@
             fieldset: {
               legend: {
                 text: "Do you want to recover legal representative’s costs?",
-                isPageHeading: false,
-                classes: "govuk-fieldset__legend--m"
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
               }
             },
             hint: {
-              text: "(Something like) these are costs for a lawyer to help with your case."
+              text: "(Something like) these are fixed costs for a lawyer to help with your case."
             },
             items: [
               {
