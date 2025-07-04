@@ -1,0 +1,38 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/stylesheets/govuk-frontend.min.css">
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link govuk-link--no-visited-state" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "#"
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">Default page template</h1>
+{% endblock %}
+
+{% block bodyEnd %}
+  {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
+  <script type="module" src="/javascripts/govuk-frontend.min.js"></script>
+  <script type="module">
+    import { initAll } from '/javascripts/govuk-frontend.min.js'
+    initAll()
+  </script>
+{% endblock %}
